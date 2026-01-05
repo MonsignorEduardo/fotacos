@@ -1,4 +1,4 @@
-name: release-main
+name: 🚀 Release
 
 on:
   release:
@@ -7,20 +7,21 @@ on:
 
 jobs:
   build-and-upload:
+    name: 📦 Build & Upload
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Check out
+      - name: 📥 Check out
         uses: actions/checkout@v4
 
-      - name: Set up the environment
+      - name: 🐍 Set up the environment
         uses: ./.github/actions/setup-python-env
 
-      - name: Make setup scripts executable
+      - name: 🔧 Make setup scripts executable
         run: chmod +x setup_raspberry_pi.sh setup_autostart.sh
 
-      - name: Upload release assets
+      - name: ⬆️ Upload release assets
         uses: softprops/action-gh-release@v2
         if: github.event_name == 'release'
         with:
@@ -31,13 +32,14 @@ jobs:
             RASPBERRY_PI_SETUP.md
 
   deploy-docs:
+    name: 📚 Deploy Docs
     runs-on: ubuntu-latest
     steps:
-      - name: Check out
+      - name: 📥 Check out
         uses: actions/checkout@v4
 
-      - name: Set up the environment
+      - name: 🐍 Set up the environment
         uses: ./.github/actions/setup-python-env
 
-      - name: Deploy documentation
+      - name: 🚀 Deploy documentation
         run: uv run mkdocs gh-deploy --force

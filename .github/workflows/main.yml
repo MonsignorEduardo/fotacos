@@ -1,4 +1,4 @@
-name: Main
+name: ✅ CI
 
 on:
   push:
@@ -9,9 +9,10 @@ on:
 
 jobs:
   quality:
+    name: 🎨 Code Quality
     runs-on: ubuntu-latest
     steps:
-      - name: Check out
+      - name: 📥 Check out
         uses: actions/checkout@v4
 
       - uses: actions/cache@v4
@@ -19,13 +20,14 @@ jobs:
           path: ~/.cache/pre-commit
           key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
 
-      - name: Set up the environment
+      - name: 🐍 Set up the environment
         uses: ./.github/actions/setup-python-env
 
-      - name: Run checks
+      - name: ✨ Run checks
         run: make check
 
   tests-and-type-check:
+    name: 🧪 Tests & Type Check
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -35,34 +37,35 @@ jobs:
       run:
         shell: bash
     steps:
-      - name: Check out
+      - name: 📥 Check out
         uses: actions/checkout@v4
 
-      - name: Set up the environment
+      - name: 🐍 Set up the environment
         uses: ./.github/actions/setup-python-env
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Run tests
+      - name: 🧪 Run tests
         run: uv run python -m pytest tests --cov --cov-config=pyproject.toml --cov-report=xml
 
-      - name: Check typing
+      - name: 🔍 Check typing
         run: uv run ty check
 
 
-      - name: Upload coverage reports to Codecov with GitHub Action
+      - name: 📊 Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   check-docs:
+    name: 📚 Documentation
     runs-on: ubuntu-latest
     steps:
-      - name: Check out
+      - name: 📥 Check out
         uses: actions/checkout@v4
 
-      - name: Set up the environment
+      - name: 🐍 Set up the environment
         uses: ./.github/actions/setup-python-env
 
-      - name: Check if documentation can be built
+      - name: 📖 Check if documentation can be built
         run: uv run mkdocs build -s
