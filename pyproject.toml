@@ -5,25 +5,26 @@ description = "Es un app para la rasbery de fotos"
 authors = [{ name = "monsignor", email = "monsignor.eduardo@proton.me" }]
 readme = "README.md"
 keywords = ['python']
-requires-python = ">=3.10,<4.0"
+requires-python = ">=3.14,<4.0"
 
 classifiers = [
     "Private :: Do Not Upload",
     "Intended Audience :: Developers",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
     "click>=8.1.0",
     "fastapi[standard]>=0.128.0",
-    "pillow>=11.0.0",
+    "pillow>=12.1.0",
     "pyside6>=6.10.1",
+    "qasync>=0.27.1",
+    "tortoise-orm>=0.22.0",
+    "aiosqlite>=0.20.0",
+    "pydantic-settings>=2.0.0",
+    "python-multipart>=0.0.21",
+    "loguru>=0.7.0",
 ]
 
 [project.scripts]

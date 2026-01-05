@@ -1,0 +1,2 @@
+# This file ensures the thumbnails directory is tracked by git
+# Thumbnail images will be generated here but not committed

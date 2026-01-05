@@ -1,2 +1,3 @@
 api: uv run uvicorn fotacos.api:app --reload --port 8000
 web: cd src/web && bun run dev
+gui: uv run fotacos gui

@@ -40,6 +40,10 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+# Application logs
+logs/
+*.log
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
@@ -212,3 +216,19 @@ __marimo__/
 
 
 .DS_Store
+
+# Project-specific
+# Database files
+fotacos.db
+fotacos.db-shm
+fotacos.db-wal
+*.db
+*.db-shm
+*.db-wal
+
+# Public photos directory (keep structure but ignore content)
+public/picts/*
+!public/picts/.gitkeep
+!public/picts/thumbnails/
+public/picts/thumbnails/*
+!public/picts/thumbnails/.gitkeep
