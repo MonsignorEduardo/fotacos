@@ -1,9 +1,7 @@
 .PHONY: install
 install: ## Install all dependencies (Python + Web)
 	@echo "🚀 Installing web dependencies using bun"
-	@cd src/web && bun install
-	@echo "🚀 Building web frontend"
-	@cd src/web && bun run build
+	@cd src/web && bun install && bun run build
 	@echo "🚀 Creating virtual environment and installing Python dependencies"
 	@uv sync
 	@uv run pre-commit install
