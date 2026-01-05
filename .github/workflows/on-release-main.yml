@@ -17,12 +17,6 @@ jobs:
       - name: Set up the environment
         uses: ./.github/actions/setup-python-env
 
-      - name: Install bun
-        uses: oven-sh/setup-bun@v2
-
-      - name: Install dependencies and build
-        run: make install
-
       - name: Make setup scripts executable
         run: chmod +x setup_raspberry_pi.sh setup_autostart.sh
 
