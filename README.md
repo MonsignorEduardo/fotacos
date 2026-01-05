@@ -6,62 +6,70 @@
 [![Commit activity](https://img.shields.io/github/commit-activity/m/MonsignorEduardo/fotacos)](https://img.shields.io/github/commit-activity/m/MonsignorEduardo/fotacos)
 [![License](https://img.shields.io/github/license/MonsignorEduardo/fotacos)](https://img.shields.io/github/license/MonsignorEduardo/fotacos)
 
-Es un app para la rasbery de fotos
+Multi-interface photo album application for Raspberry Pi with web, desktop GUI, and REST API.
 
-- **Github repository**: <https://github.com/MonsignorEduardo/fotacos/>
-- **Documentation** <https://MonsignorEduardo.github.io/fotacos/>
+- **📦 Github repository**: <https://github.com/MonsignorEduardo/fotacos/>
+- **📚 Documentation**: <https://MonsignorEduardo.github.io/fotacos/>
 
-## Getting started with your project
+## Features
 
-### 1. Create a New Repository
+- 🌐 **Web Interface**: React-based photo gallery with modern UI
+- 🖥️ **Desktop GUI**: PySide6/Qt QML application for slideshow mode
+- 🔌 **REST API**: FastAPI backend for photo management
+- 🖼️ **Image Processing**: Automatic WebP conversion and thumbnail generation
+- 📱 **Responsive**: Works on desktop, tablet, and mobile devices
 
-First, create a repository on GitHub with the same name as this project, and then run the following commands:
+## Quick Start
 
-```bash
-git init -b main
-git add .
-git commit -m "init commit"
-git remote add origin git@github.com:MonsignorEduardo/fotacos.git
-git push -u origin main
-```
+### Development
 
-### 2. Set Up Your Development Environment
-
-Then, install the environment and the pre-commit hooks with
+Install dependencies and run the development server:
 
 ```bash
 make install
+make dev
 ```
 
-This will also generate your `uv.lock` file
+The web interface will be available at `http://localhost:3000` and the API at `http://localhost:8000`.
 
-### 3. Run the pre-commit hooks
+### Desktop GUI
 
-Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
+Run the desktop application:
+
+fotacos gui
+```
+
+### Raspberry Pi Setup
+
+For detailed Raspberry Pi installation instructions, see [RASPBERRY_PI_SETUP.md](RASPBERRY_PI_SETUP.md).
+
+## Development
+
+### Running Tests
 
 ```bash
-uv run pre-commit run -a
+make test
 ```
 
-### 4. Commit the changes
-
-Lastly, commit the changes made by the two steps above to your repository.
+### Code Quality Checks
 
 ```bash
-git add .
-git commit -m 'Fix formatting issues'
-git push origin main
+make check
 ```
 
-You are now ready to start development on your project!
-The CI/CD pipeline will be triggered when you open a pull request, merge to main, or when you create a new release.
+### Building for Production
 
-To finalize the set-up for publishing to PyPI, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/publishing/#set-up-for-pypi).
-For activating the automatic documentation with MkDocs, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/mkdocs/#enabling-the-documentation-on-github).
-To enable the code coverage reports, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/codecov/).
+```bash
+make build
+```
 
-## Releasing a new version
+## Documentation
 
+Full documentation is available at <https://MonsignorEduardo.github.io/fotacos/>
+
+## License
+
+This project is licensed under the terms of the license specified in the [LICENSE](LICENSE) file.
 
 
 ---
