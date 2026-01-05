@@ -3,6 +3,7 @@ name: release-main
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   build-and-upload:
@@ -16,17 +17,18 @@ jobs:
       - name: Set up the environment
         uses: ./.github/actions/setup-python-env
 
-      - name: Install bun for web build
+      - name: Install bun
         uses: oven-sh/setup-bun@v2
 
-      - name: Build project
-        run: make build
+      - name: Install dependencies and build
+        run: make install
 
       - name: Make setup scripts executable
         run: chmod +x setup_raspberry_pi.sh setup_autostart.sh
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
+        if: github.event_name == 'release'
         with:
           files: |
             dist/*.whl

@@ -1,10 +1,12 @@
 .PHONY: install
 install: ## Install all dependencies (Python + Web)
-	@echo "🚀 Creating virtual environment using uv"
-	@uv sync
-	@uv run pre-commit install
 	@echo "🚀 Installing web dependencies using bun"
 	@cd src/web && bun install
+	@echo "🚀 Building web frontend"
+	@cd src/web && bun run build
+	@echo "🚀 Creating virtual environment and installing Python dependencies"
+	@uv sync
+	@uv run pre-commit install
 
 .PHONY: dev
 dev: ## Run development servers (FastAPI + Vite) with hot reload
