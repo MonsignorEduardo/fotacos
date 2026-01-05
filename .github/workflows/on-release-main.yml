@@ -42,8 +42,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: � Configure git credentials
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
       - name: 🐍 Set up the environment
         uses: ./.github/actions/setup-python-env
 
       - name: 🚀 Deploy documentation
         run: uv run mkdocs gh-deploy --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
