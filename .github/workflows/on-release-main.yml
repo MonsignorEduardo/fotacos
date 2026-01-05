@@ -5,6 +5,34 @@ on:
     types: [published]
 
 jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up the environment
+        uses: ./.github/actions/setup-python-env
+
+      - name: Install bun for web build
+        uses: oven-sh/setup-bun@v2
+
+      - name: Build project
+        run: make build
+
+      - name: Make setup scripts executable
+        run: chmod +x setup_raspberry_pi.sh setup_autostart.sh
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.whl
+            setup_raspberry_pi.sh
+            setup_autostart.sh
+            RASPBERRY_PI_SETUP.md
 
   deploy-docs:
     runs-on: ubuntu-latest
