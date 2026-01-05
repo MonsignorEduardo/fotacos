@@ -1,4 +1,4 @@
-from fotacos.foo import foo
+from fotacos.main import foo
 
 
 def test_foo():

@@ -1,8 +1,20 @@
 .PHONY: install
-install: ## Install the virtual environment and install the pre-commit hooks
+install: ## Install all dependencies (Python + Web)
 	@echo "🚀 Creating virtual environment using uv"
 	@uv sync
 	@uv run pre-commit install
+	@echo "🚀 Installing web dependencies using bun"
+	@cd src/web && bun install
+
+.PHONY: dev
+dev: ## Run development servers (FastAPI + Vite) with hot reload
+	@echo "🚀 Starting development servers..."
+	@uv run honcho start -f Procfile.dev
+
+.PHONY: build-web
+build-web: ## Build the web frontend
+	@echo "🚀 Building web frontend"
+	@cd src/web && bun run build
 
 .PHONY: check
 check: ## Run code quality tools.
@@ -21,9 +33,9 @@ test: ## Test the code with pytest
 	@uv run python -m pytest --cov --cov-config=pyproject.toml --cov-report=xml
 
 .PHONY: build
-build: clean-build ## Build wheel file
+build: clean-build build-web ## Build wheel file (includes web frontend)
 	@echo "🚀 Creating wheel file"
-	@uvx --from build pyproject-build --installer uv
+	@uv build --wheel
 
 .PHONY: clean-build
 clean-build: ## Clean build artifacts
