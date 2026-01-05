@@ -15,16 +15,18 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
+    "aiosqlite>=0.20.0",          # Runtime dep for Tortoise ORM SQLite support
     "click>=8.1.0",
     "fastapi[standard]>=0.128.0",
+    "loguru>=0.7.0",
     "pillow>=12.1.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
     "pyside6>=6.10.1",
+    "python-multipart>=0.0.21",   # Runtime dep for FastAPI file uploads
     "qasync>=0.27.1",
     "tortoise-orm>=0.22.0",
-    "aiosqlite>=0.20.0",
-    "pydantic-settings>=2.0.0",
-    "python-multipart>=0.0.21",
-    "loguru>=0.7.0",
+    "uvicorn>=0.30.0",
 ]
 
 [project.scripts]
@@ -126,6 +128,12 @@ ignore = [
 
 [tool.ruff.format]
 preview = true
+
+[tool.deptry]
+extend_exclude = ["tests"]
+
+[tool.deptry.per_rule_ignores]
+DEP002 = ["aiosqlite", "python-multipart"]
 
 [tool.coverage.report]
 skip_empty = true

@@ -27,6 +27,11 @@ def web(host: str, port: int, reload: bool):
     run_web(host=host, port=port, reload=reload)
 
 
+def foo(value: str) -> str:
+    """Dummy function for testing."""
+    return value
+
+
 def main():
     """Main entry point."""
     cli()

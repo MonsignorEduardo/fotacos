@@ -27,7 +27,6 @@ runs:
 
     - name: Install bun
       uses: oven-sh/setup-bun@v2
-      shell: bash
 
     - name: Install dependencies
       run: make install
