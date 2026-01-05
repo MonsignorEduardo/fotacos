@@ -3,7 +3,6 @@
 import click
 
 from fotacos.api import run_web
-from fotacos.gui import run_gui
 
 
 @click.group()
@@ -15,6 +14,9 @@ def cli():
 @cli.command()
 def gui():
     """Run the desktop GUI application."""
+    # Lazy import to avoid Qt dependencies when not needed
+    from fotacos.gui import run_gui
+
     run_gui()
 
 
@@ -25,11 +27,6 @@ def gui():
 def web(host: str, port: int, reload: bool):
     """Run the web server."""
     run_web(host=host, port=port, reload=reload)
-
-
-def foo(value: str) -> str:
-    """Dummy function for testing."""
-    return value
 
 
 def main():
